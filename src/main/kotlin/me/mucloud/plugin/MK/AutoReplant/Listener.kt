@@ -1,19 +1,30 @@
 package me.mucloud.plugin.MK.AutoReplant
 
-import org.bukkit.Bukkit
-import org.bukkit.Material
-import org.bukkit.block.Block
-import org.bukkit.block.BlockFace
+import org.bukkit.Tag
+import org.bukkit.block.data.Ageable
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.block.Action
-import org.bukkit.event.player.PlayerHarvestBlockEvent
+import org.bukkit.event.player.PlayerInteractEvent
 import org.bukkit.inventory.ItemStack
 
 object Listener : Listener{
 
-    @EventHandler fun onInteract(PIE: PlayerHarvestBlockEvent){
-        Bukkit.broadcastMessage("事件触发了")
+    @EventHandler fun onInteract(e: PlayerInteractEvent){
+        if(e.action == Action.RIGHT_CLICK_BLOCK &&
+                Tag.CROPS.isTagged(e.clickedBlock!!.type) &&
+                (e.clickedBlock!!.blockData as Ageable).age == (e.clickedBlock!!.blockData as Ageable).maximumAge
+                ){
+
+            for(isl: ItemStack in e.clickedBlock!!.drops){
+                e.player.inventory.addItem(isl)
+            }
+
+            var a: Ageable = e.clickedBlock!!.blockData as Ageable
+            a.age = 0
+
+            e.clickedBlock!!.blockData = a
+        }
     }
 
 }

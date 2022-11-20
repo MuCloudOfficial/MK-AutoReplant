@@ -1,0 +1,7 @@
+#============================================================
+name: MK-AutoReplant
+main: me.mucloud.plugin.MK.AutoReplant.Main
+version: Beta 000
+author: Mu_Cloud
+#============================================================
+api-version: 1.13
