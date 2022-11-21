@@ -2,6 +2,8 @@ package me.mucloud.plugin.MK.AutoReplant
 
 import org.bukkit.Tag
 import org.bukkit.block.data.Ageable
+import org.bukkit.entity.EntityType
+import org.bukkit.entity.Item
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.block.Action
@@ -17,7 +19,7 @@ object Listener : Listener{
                 ){
 
             for(isl: ItemStack in e.clickedBlock!!.drops){
-                e.player.inventory.addItem(isl)
+                (e.player.world.spawnEntity(e.player.location, EntityType.DROPPED_ITEM) as Item).itemStack = isl
             }
 
             var a: Ageable = e.clickedBlock!!.blockData as Ageable
