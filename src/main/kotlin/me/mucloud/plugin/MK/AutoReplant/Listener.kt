@@ -22,7 +22,7 @@ object Listener : Listener{
                 (e.player.world.spawnEntity(e.clickedBlock!!.location, EntityType.DROPPED_ITEM) as Item).itemStack = isl
             }
 
-            var a: Ageable = e.clickedBlock!!.blockData as Ageable
+            val a: Ageable = e.clickedBlock!!.blockData as Ageable
             a.age = 0
 
             e.clickedBlock!!.blockData = a

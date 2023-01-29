@@ -9,8 +9,5 @@
         <module name="MK-AutoReplant" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="MK-AutoReplant" target="1.5" />
-    </bytecodeTargetLevel>
   </component>
 </project>
